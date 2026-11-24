@@ -1,29 +1,106 @@
 {
-  "name": "耐用消费品换新凭证采集与退款联动台",
+  "name": "以旧换新申请的逐商品凭证采集与结算处理",
   "material_nature": "本地合成演练资料",
-  "description": "仅供本地开发和回归，记录不代表真实机构、交易或观测。",
-  "records": {
-    "orders": [
-      {
-        "store": "north-shop",
-        "order": "A-104",
-        "goods": "washer",
-        "state": "paid"
-      }
-    ],
-    "handoffs": [
-      {
-        "order": "A-104",
-        "state": "received"
-      }
-    ],
-    "after_sales": [
-      {
-        "order": "A-104",
-        "revision": 2,
-        "state": "refunded"
-      }
-    ],
-    "notes": "合成门店、物流和售后记录。"
-  }
+  "description": "资料中的机构、项目、交易、合同和回执均为虚构，仅用于本地开发与回归。",
+  "feeds": [
+    {
+      "id": "orders",
+      "label": "商户订单与活动规则",
+      "records": [
+        {
+          "merchant": "北城电器",
+          "order": "A-104",
+          "line": "L1",
+          "goods": "洗衣机",
+          "purchase_at": "2026-11-03",
+          "campaign": "以旧换新-11月",
+          "eligible_category": "大家电",
+          "paid": "yes"
+        },
+        {
+          "merchant": "北城电器",
+          "order": "A-104",
+          "line": "L2",
+          "goods": "空调",
+          "purchase_at": "2026-11-03",
+          "campaign": "以旧换新-11月",
+          "eligible_category": "大家电",
+          "paid": "yes"
+        },
+        {
+          "merchant": "南城商城",
+          "order": "A-104",
+          "line": "L1",
+          "goods": "冰箱",
+          "purchase_at": "2026-11-04",
+          "campaign": "以旧换新-11月",
+          "eligible_category": "大家电",
+          "paid": "yes"
+        }
+      ]
+    },
+    {
+      "id": "handoffs",
+      "label": "回收与签收页面",
+      "records": [
+        {
+          "merchant": "北城电器",
+          "order": "A-104",
+          "line": "L1",
+          "old_goods": "旧洗衣机",
+          "receipt": "H-7",
+          "state": "received",
+          "received_at": "2026-11-06"
+        },
+        {
+          "merchant": "北城电器",
+          "order": "A-104",
+          "line": "L2",
+          "old_goods": "旧空调",
+          "receipt": "H-8",
+          "state": "pending",
+          "received_at": null
+        },
+        {
+          "merchant": "南城商城",
+          "order": "A-104",
+          "line": "L1",
+          "old_goods": "旧冰箱",
+          "receipt": "H-9",
+          "state": "received",
+          "received_at": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": "aftersales",
+      "label": "售后与结算记录",
+      "records": [
+        {
+          "merchant": "北城电器",
+          "order": "A-104",
+          "line": "L2",
+          "revision": 2,
+          "state": "partially-refunded",
+          "refund_amount": "600"
+        },
+        {
+          "merchant": "北城电器",
+          "order": "A-104",
+          "line": "L1",
+          "revision": 1,
+          "state": "not-refunded",
+          "refund_amount": "0"
+        },
+        {
+          "settlement": "活动结算-11-06",
+          "merchant": "北城电器",
+          "order": "A-104",
+          "lines": "L1,L2",
+          "state": "confirmed",
+          "total": "1600"
+        }
+      ]
+    }
+  ]
 }
