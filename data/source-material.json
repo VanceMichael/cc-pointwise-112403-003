@@ -1,0 +1,29 @@
+{
+  "name": "耐用消费品换新凭证采集与退款联动台",
+  "material_nature": "本地合成演练资料",
+  "description": "仅供本地开发和回归，记录不代表真实机构、交易或观测。",
+  "records": {
+    "orders": [
+      {
+        "store": "north-shop",
+        "order": "A-104",
+        "goods": "washer",
+        "state": "paid"
+      }
+    ],
+    "handoffs": [
+      {
+        "order": "A-104",
+        "state": "received"
+      }
+    ],
+    "after_sales": [
+      {
+        "order": "A-104",
+        "revision": 2,
+        "state": "refunded"
+      }
+    ],
+    "notes": "合成门店、物流和售后记录。"
+  }
+}
